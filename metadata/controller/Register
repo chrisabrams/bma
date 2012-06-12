@@ -1,0 +1,46 @@
+{
+    "id": "ExtBox1-ext-gen34830",
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Register"
+    },
+    "customConfigs": [],
+    "designerId": "f3ee9eed-4c57-4783-a33c-f39a7d303255",
+    "$viewOrder": 2,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen35011",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "init",
+                "designer|params": [
+                    "application"
+                ],
+                "implHandler": [
+                    "Ext.io.Io.getCurrentUser({",
+                    "    success: function(user) {",
+                    "        if(user) {",
+                    "            Ext.Viewport.setActiveItem(Ext.create('bma.view.Lobby'));",
+                    "        };",
+                    "    }",
+                    "});"
+                ],
+                "designer|userClassName": "init"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        }
+    ]
+}

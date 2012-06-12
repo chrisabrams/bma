@@ -1,0 +1,87 @@
+{
+    "id": "ExtBox1-ext-gen23348",
+    "type": "controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "views": [
+            "Lobby"
+        ],
+        "designer|userClassName": "Lobby"
+    },
+    "customConfigs": [],
+    "designerId": "6afd9a0f-2230-44db-a0a8-04796416267b",
+    "$viewOrder": 0,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen40467",
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "messageList",
+                "selector": "#messageList",
+                "designer|userClassName": "messageList"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen42098",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "var _this = this;",
+                    "",
+                    "Ext.io.Io.getCurrentUser({",
+                    "    success: function(user) {",
+                    "        _this.user = user;",
+                    "        ",
+                    "        messageStore = Ext.create('bma.store.Lobby', {storeId: 'lobbyStore'});",
+                    "        messageStore.load();",
+                    "        _this.getMessageList().setStore(messageStore);",
+                    "        messageStore.sync(function() {",
+                    "            console.log('Initial sync ran: lobbyStore');",
+                    "        });",
+                    "",
+                    "        user.receive({",
+                    "            callback: function(callback, bool, sender, message) {",
+                    "                var userId = sender.getUserId();",
+                    "                console.log(\"user got a message!\", arguments, userId);",
+                    "",
+                    "                var record = {",
+                    "                    message: message,",
+                    "                    userID: userId,",
+                    "                    from: userId,",
+                    "                    date: new Date().getTime()",
+                    "                };",
+                    "                console.log(\"saving message\", record);",
+                    "",
+                    "                messageStore.add(record);",
+                    "                messageStore.sync();",
+                    "            }",
+                    "      });",
+                    "    }",
+                    "});"
+                ],
+                "designer|userClassName": "launch"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        }
+    ]
+}

@@ -1,0 +1,161 @@
+{
+    "id": "ExtBox1-ext-gen12229",
+    "type": "formpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|initialView": true,
+        "designer|userClassName": "Main"
+    },
+    "customConfigs": [],
+    "designerId": "6973aac0-f0d5-4f19-aa67-b3226102db2e",
+    "$viewOrder": 0,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen12476",
+            "type": "titlebar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Login",
+                "designer|userClassName": "MyTitleBar"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen12726",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "registerButton",
+                        "text": "Regiser",
+                        "designer|userClassName": "MyButton"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen14061",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onRegisterButtonTap",
+                                "implHandler": [
+                                    "console.log(\"Button hit: go to register\");",
+                                    "Ext.Viewport.setActiveItem(Ext.create('bma.view.Register'));"
+                                ],
+                                "name": "tap",
+                                "designer|userClassName": "onRegisterButtonTap"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen13024",
+            "type": "textfield",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "label": "Username",
+                "name": "username",
+                "designer|userClassName": "MyTextField"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen13248",
+            "type": "passwordfield",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "label": "Password",
+                "name": "password",
+                "designer|userClassName": "MyPasswordField"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen13645",
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "loginSubmit",
+                "ui": "confirm",
+                "text": "Submit",
+                "designer|userClassName": "MyButton1"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen17859",
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onLoginSubmitTap",
+                        "implHandler": [
+                            "var values = this.getValues();",
+                            "if (values.username && values.password) {",
+                            "    ",
+                            "    Ext.io.Io.getCurrentGroup({",
+                            "        success: function(group) {",
+                            "            group.authenticate({",
+                            "                params: {",
+                            "                    username: values.username,",
+                            "                    password: values.password",
+                            "                },",
+                            "                success: function() {",
+                            "                    Ext.Viewport.setActiveItem(Ext.create('bma.view.Lobby'));",
+                            "                }",
+                            "            });",
+                            "        }",
+                            "    });",
+                            "}"
+                        ],
+                        "name": "tap",
+                        "designer|userClassName": "onLoginSubmitTap"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        }
+    ]
+}

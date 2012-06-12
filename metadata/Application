@@ -1,0 +1,62 @@
+{
+    "id": "ExtBox1-ext-gen12171",
+    "type": "application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "Lobby"
+        ],
+        "views": [
+            "Main",
+            "Register",
+            "Lobby"
+        ],
+        "name": "bma",
+        "controllers": [
+            "Lobby",
+            "Main",
+            "Register"
+        ]
+    },
+    "customConfigs": [],
+    "designerId": "application",
+    "$viewOrder": 0,
+    "iconCls": "icon-application",
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen18804",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "/*Ext.io.Io.setup({",
+                    "    logLevel: \"debug\",",
+                    "    appId: \"6tdNQjk8vV2QuOQh9zLK0WTe4h0\",",
+                    "    appSecret: \"LeCOKeSPYQYeD7zk\",",
+                    "    url: \"http://msg.sencha-dev.io:80\"",
+                    "});*/",
+                    "Ext.io.Io.setup({",
+                    "    logLevel: \"debug\",",
+                    "    appId: \"2AWPls2mskX6TvdeuMciYjKfx7j\",",
+                    "    appSecret: \"o0tdBG36rlXyMt2K\"",
+                    "});",
+                    "Ext.io.Io.init();"
+                ],
+                "designer|userClassName": "launch"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        }
+    ]
+}

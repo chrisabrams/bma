@@ -1,0 +1,195 @@
+{
+    "id": "ExtBox1-ext-gen20211",
+    "type": "formpanel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "layout": "card",
+        "designer|userClassName": "Lobby"
+    },
+    "customConfigs": [],
+    "designerId": "e4642336-8bd6-43b3-aaff-13adf440cd13",
+    "$viewOrder": 2,
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen20435",
+            "type": "titlebar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Lobby",
+                "designer|userClassName": "MyTitleBar2"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen20685",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "itemId": "logoutButton",
+                        "text": "Logout",
+                        "designer|userClassName": "MyButton4"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen36758",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onLogoutButtonTap",
+                                "implHandler": [
+                                    "console.log(\"Button Pressed: logout\");",
+                                    "",
+                                    "Ext.io.Io.getCurrentUser({",
+                                    "    success: function(user) {",
+                                    "        //If user is logged in",
+                                    "        if(user) {",
+                                    "            ",
+                                    "            // We need to clear out the local copy of the user's data on logout",
+                                    "            var messageStore = Ext.create('bma.store.Lobby', {storeId: 'lobbyStore'});",
+                                    "            if(messageStore) {",
+                                    "                messageStore.getProxy().clear();",
+                                    "            }",
+                                    "            console.log(\"Logging out...\");",
+                                    "            user.logout();",
+                                    "            Ext.Viewport.setActiveItem(Ext.create('bma.view.Main'));",
+                                    "        }",
+                                    "    }",
+                                    "});"
+                                ],
+                                "name": "tap",
+                                "designer|userClassName": "onLogoutButtonTap"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen22563",
+            "type": "list",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "messageList",
+                "itemId": null,
+                "padding": 0,
+                "layout": "fit",
+                "itemTpl": "<div>{message}</div>",
+                "store": "Lobby",
+                "designer|userClassName": "MyList"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen22905",
+            "type": "button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "bottom",
+                "itemId": "messageSend",
+                "ui": "confirm",
+                "text": "Send",
+                "designer|userClassName": "MyButton5"
+            },
+            "customConfigs": [],
+            "expanded": true,
+            "cn": [
+                {
+                    "id": "ExtBox1-ext-gen30458",
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onMessageSendTap",
+                        "implHandler": [
+                            "var values = this.getValues();",
+                            "if (values.message) {",
+                            "    //this.setValue('message', '');",
+                            "    ",
+                            "    Ext.io.Io.getCurrentUser({",
+                            "        success: function(user) {",
+                            "            user.send({",
+                            "                message: values.message,",
+                            "                callback: function() {",
+                            "                    console.log(\"messageSend callback\", arguments);",
+                            "        ",
+                            "                    var record = {",
+                            "                        message: values.message,",
+                            "                        userID: user.key,",
+                            "                        from: \"ME\",",
+                            "                        date: new Date().getTime()",
+                            "                    };",
+                            "        ",
+                            "                    console.log(\"saving message\", record);",
+                            "                    messageStore = Ext.getStore('lobbyStore');",
+                            "                    messageStore.add(record);",
+                            "                    messageStore.sync();",
+                            "        ",
+                            "                    //msgField.setValue(\"\");",
+                            "                }",
+                            "            });",
+                            "        }",
+                            "    });",
+                            "}"
+                        ],
+                        "name": "tap",
+                        "designer|userClassName": "onMessageSendTap"
+                    },
+                    "customConfigs": [],
+                    "expanded": true
+                }
+            ]
+        },
+        {
+            "id": "ExtBox1-ext-gen22733",
+            "type": "textfield",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "bottom",
+                "label": "Message",
+                "name": "message",
+                "designer|userClassName": "MyTextField2"
+            },
+            "customConfigs": [],
+            "expanded": true
+        }
+    ]
+}
